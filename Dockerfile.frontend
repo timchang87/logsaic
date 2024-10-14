@@ -1,0 +1,18 @@
+FROM node:20.11.1-alpine AS base
+
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
+
+COPY . .
+RUN rm -rf apps/backend
+RUN npm run install-deps
+
+FROM base AS builder
+
+RUN npm run frontend:build
+
+FROM nginx:alpine AS production
+
+# COPY /ssl /etc/nginx/ssl
+COPY --from=builder /app/apps/frontend/dist /usr/share/nginx/html

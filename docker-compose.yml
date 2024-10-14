@@ -1,0 +1,45 @@
+services:
+  frontend:
+    container_name: web
+    build:
+      context: ./
+      dockerfile: Dockerfile.frontend
+      target: base
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules/
+      - /app/apps/backend/
+    environment:
+      - PROXY_TARGET=https://node:5000
+    command: npm run frontend:dev
+
+  backend:
+    container_name: node
+    build:
+      context: ./
+      dockerfile: Dockerfile.backend
+      target: base
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app
+      - /app/node_modules/
+      - /app/apps/frontend/
+    command: npm run backend:dev
+
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - '80:80'
+    depends_on:
+      - frontend
+      - backend
+    volumes:
+      - ./apps/frontend/nginx.dev.conf:/etc/nginx/conf.d/default.conf
