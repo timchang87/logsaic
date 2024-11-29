@@ -1,0 +1,37 @@
+.Root {
+  display: flex;
+  flex-direction: row;
+  column-gap: 30px;
+}
+
+.Item {
+  display: flex;
+  justify-content: center;
+
+  a {
+    color: var(--Black-300, #bdbdbd); //change to variable
+    font-family: var(--Font-family-font-family-body, Inter);
+    font-size: var(--Font-size-text-md, 14px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--Line-height-text-md, 24px);
+  }
+}
+
+.List {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px 0px;
+
+  button {
+    padding: 0px 0px;
+    background-color: transparent;
+    color: var(--Black-300, #bdbdbd); //change to variable
+    font-family: var(--Font-family-font-family-body, Inter);
+    font-size: var(--Font-size-text-md, 14px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--Line-height-text-md, 24px);
+  }
+}

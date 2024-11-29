@@ -22,6 +22,5 @@ module.exports = {
     'require-await': 'off',
     '@typescript-eslint/require-await': 'error',
     'no-nested-ternary': 'error',
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };

@@ -1,4 +1,5 @@
 const path = require('path');
+const { parserOptions } = require('../../.eslintrc.cjs');
 module.exports = {
   env: { browser: true, es2022: true },
   extends: [
@@ -7,7 +8,7 @@ module.exports = {
     '../../.eslintrc.cjs',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'index.html'],
-  plugins: ['react-refresh', 'react'],
+  plugins: ['react-refresh', 'react', 'stylelint-scss'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',

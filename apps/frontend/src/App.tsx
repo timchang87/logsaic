@@ -1,17 +1,10 @@
-import axios from 'axios';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
+import { HomePageNavigation } from './products/Homepage/components/Navigation/HomePageNavigation';
 
 const App: FC = () => {
-  useEffect(() => {
-    axios.get('/api/test').then(function (response) {
-      console.log(response);
-    });
-  }, []);
-  return (
-    <div>
-      <h1>Hello, World!!!</h1>
-    </div>
-  );
+  const path = window.location.pathname;
+
+  return !path.includes('/app') && <HomePageNavigation />;
 };
 
 export default App;

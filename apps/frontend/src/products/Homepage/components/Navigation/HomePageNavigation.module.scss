@@ -1,0 +1,98 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  background: var(--Colors-Background-bg-secondary_alt, #0c111d);
+  .root {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 200px;
+    .left {
+      display: flex;
+      flex-direction: row;
+      column-gap: 50px;
+      .logo {
+        color: #fff;
+        font-family: var(--Font-family-font-family-body, Inter);
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+      }
+    }
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      column-gap: 12px;
+      .login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--spacing-sm, 6px);
+        border-radius: var(--radius-md, 8px);
+        border: 1px solid #333741;
+        background: #161a26;
+        width: fit-content;
+        padding: 0px 12px;
+        box-shadow:
+          0px 0px 0px 1px
+            var(
+              --Colors-Effects-Shadows-shadow-skeumorphic-inner-border,
+              rgba(12, 17, 29, 0.18)
+            )
+            inset,
+          0px -2px 0px 0px var(
+              --Colors-Effects-Shadows-shadow-skeumorphic-inner,
+              rgba(12, 17, 29, 0.05)
+            ) inset,
+          0px 1px 2px 0px
+            var(--Colors-Effects-Shadows-shadow-xs, rgba(255, 255, 255, 0));
+        color: #cecfd2;
+
+        font-family: var(--Font-family-font-family-body, Inter);
+        font-size: var(--Font-size-text-md, 12px);
+        font-style: normal;
+        font-weight: 500;
+        line-height: var(--Line-height-text-md, 24px);
+      }
+
+      .register {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--spacing-sm, 6px);
+        padding: 0px 12px;
+        border-radius: var(--radius-md, 8px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: var(--Colors-Base-white, #fff);
+
+        box-shadow:
+          0px 0px 0px 1px
+            var(
+              --Colors-Effects-Shadows-shadow-skeumorphic-inner-border,
+              rgba(12, 17, 29, 0.18)
+            )
+            inset,
+          0px -2px 0px 0px var(
+              --Colors-Effects-Shadows-shadow-skeumorphic-inner,
+              rgba(12, 17, 29, 0.05)
+            ) inset,
+          0px 1px 2px 0px
+            var(--Colors-Effects-Shadows-shadow-xs, rgba(255, 255, 255, 0));
+
+        color: var(--Colors-Base-black, #000);
+
+        font-family: var(--Font-family-font-family-body, Inter);
+        font-size: var(--Font-size-text-md, 12px);
+        font-style: normal;
+        font-weight: 500;
+        line-height: var(--Line-height-text-md, 24px);
+      }
+    }
+  }
+}

@@ -1,0 +1,159 @@
+$dark-theme: 'dark-theme';
+$light-theme: 'light-theme';
+
+//COLOR PALETTE
+//BRAND COLOR
+$brand-royal-blue: linear-gradient(
+  265.56deg,
+  #246cf9 -0.27%,
+  #1e68f6 -0.26%,
+  #0047d0 98.59%
+);
+//BASE COLORS
+$base-dark-transparent: rgba(47, 50, 65, 0.5);
+$base-darker-grey: rgba(20, 21, 24, 1);
+$base-grey-100: rgba(30, 31, 37, 1);
+$base-grey-80: rgba(52, 56, 76, 1);
+$base-grey-60: rgba(93, 101, 136, 1);
+$base-grey-40: rgba(165, 173, 207, 1);
+$base-grey-20: rgba(229, 230, 237, 1);
+$base-grey-10: rgba(248, 248, 248, 1);
+$base-grey-0: rgba(255, 255, 255, 1);
+// ACCENT COLORS
+$accent-red-primary: rgba(250, 34, 86, 1);
+$accent-red-linear: linear-gradient(
+  180deg,
+  rgba(252, 226, 237, 0.38) 10.42%,
+  rgba(44, 44, 44, 0) 100%
+);
+//isn't red in figma because it is the area beneath the line
+$accent-green-primary: rgba(17, 202, 190, 1);
+$accent-green-linear: linear-gradient(
+  180deg,
+  rgba(188, 251, 255, 0.4) 26.04%,
+  rgba(0, 0, 0, 0) 100%
+);
+$accent-gradient-pattern: linear-gradient(
+  180deg,
+  #0522ac 0%,
+  rgba(52, 56, 76, 0) 100%
+);
+$accent-gradient-background: radial-gradient(
+  40.45% 40.45% at 50% 46.16%,
+  rgba(1, 9, 80, 0.9) 3.12%,
+  rgba(14, 17, 32, 0) 100%
+);
+$accent-light-green: rgba(48, 224, 161, 1);
+$accent-purple: rgba(189, 71, 251, 1);
+$accent-orange: rgba(242, 127, 22, 1);
+
+//THEMES
+$themes: (
+  $light-theme: (
+    //DASHBOARD COLORS
+    dashboard-background-primary: $base-grey-0,
+    dashboard-background-accent: $base-grey-10,
+    dashboard-divider: $base-grey-20,
+    dashboard-scollbar: $base-grey-20,
+
+    //FONT COLORS
+    text-active: $base-darker-grey,
+    text-inactive: $base-grey-60,
+
+    //BUTTON COLORS
+    button-primary: $brand-royal-blue,
+    button-active: $base-grey-20,
+    button-border-buy: $accent-green-primary,
+    button-border-sell: $accent-red-primary,
+    button-border-primary: $base-darker-grey,
+    button-text-primary: $base-darker-grey,
+    button-text-sell: $accent-red-primary,
+    button-text-buy: $accent-green-primary,
+
+    //VIZUALIZATION Colors
+    viz-primary: $accent-light-green,
+    viz-secondary: $accent-purple,
+    viz-tertiary: $accent-orange,
+    viz-gain: $accent-green-primary,
+    viz-gain-area: $accent-green-linear,
+    viz-loss: $accent-red-primary,
+    viz-loss-area: $accent-red-linear,
+  ),
+  $dark-theme: (
+    //DASHBOARD COLORS
+    dashboard-background-primary: $base-darker-grey,
+    dashboard-background-accent: $base-grey-100,
+    dashboard-divider: $base-grey-80,
+    dashboard-scollbar: $base-grey-80,
+
+    //FONT COLORS
+    text-active: $base-grey-0,
+    text-inactive: $base-grey-60,
+
+    //BUTTON COLORS
+    button-background-primary: $brand-royal-blue,
+    button-background-active: $base-grey-20,
+    button-border-buy: $accent-green-primary,
+    button-border-sell: $accent-red-primary,
+    button-border-primary: $base-grey-0,
+    button-text-primary: $base-grey-0,
+    button-text-sell: $accent-red-primary,
+    button-text-buy: $accent-green-primary,
+
+    //VIZUALIZATION Colors
+    viz-primary: $accent-light-green,
+    viz-secondary: $accent-purple,
+    viz-tertiary: $accent-orange,
+    viz-gain: $accent-green-primary,
+    viz-gain-area: $accent-green-linear,
+    viz-loss: $accent-red-primary,
+    viz-loss-area: $accent-red-linear,
+  ),
+);
+
+//Apply color based on user's theme preference
+@mixin themeProperty(
+  $theme,
+  $property,
+  $color,
+  $additionalPropertiesPositionIsFront,
+  $additionalProperties
+) {
+  @if $additionalPropertiesPositionIsFront {
+    #{$property}: unquote(
+      $additionalProperties + ' ' + map-get($theme, $color)
+    );
+  } @else {
+    #{$property}: unquote(
+      map-get($theme, $color) + ' ' + $additionalProperties
+    );
+  }
+}
+
+@mixin theme(
+  $property,
+  $color,
+  $additionalPropertiesPositionIsFront: false,
+  $additionalProperties: ''
+) {
+  $light: map-get($themes, $light-theme);
+  $dark: map-get($themes, $dark-theme);
+
+  @include themeProperty(
+    $light,
+    $property,
+    $color,
+    $additionalPropertiesPositionIsFront,
+    $additionalProperties
+  );
+
+  @media (prefers-color-scheme: dark) {
+    @include themeProperty(
+      $dark,
+      $property,
+      $color,
+      $additionalPropertiesPositionIsFront,
+      $additionalProperties
+    );
+  }
+}
